@@ -40,6 +40,8 @@ STDMETHODIMP_(ULONG) ExplorerCommand::Release() {
 
 // * IExplorerCommand methods
 STDMETHODIMP ExplorerCommand::GetTitle(IShellItemArray*, LPWSTR* title) {
+    OutputDebugStringW(L"MSYS2: GetTitle called\n");                                    // | DEBUG
+
     if (title == nullptr)
         return E_POINTER;
 

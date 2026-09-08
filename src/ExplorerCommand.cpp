@@ -22,17 +22,17 @@ STDMETHODIMP ExplorerCommand::QueryInterface(REFIID riid, void** object) {
 }
 
 STDMETHODIMP_(ULONG) ExplorerCommand::AddRef() {
-    return InterlockedIncrement(
-        reinterpret_cast<volatile LONG*>(&referenceCount_)
+    return static_cast<ULONG>(
+        InterlockedIncrement(&referenceCount_)
     );
 }
 
 STDMETHODIMP_(ULONG) ExplorerCommand::Release() {
-    ULONG count = InterlockedDecrement(
-        reinterpret_cast<volatile LONG*>(&referenceCount_)
+    ULONG count = static_cast<ULONG>(
+        InterlockedDecrement(&referenceCount_)
     );
 
-    if (count == 0) 
+    if (count == 0)
         delete this;
 
     return count;

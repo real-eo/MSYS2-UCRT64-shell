@@ -7,7 +7,7 @@ class ExplorerCommand final : public IExplorerCommand {
 private:
     ~ExplorerCommand();
     
-    ULONG referenceCount_ = 1;
+    LONG referenceCount_ = 1;;
 
 public:
     ExplorerCommand();

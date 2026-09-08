@@ -1,0 +1,16 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{15A3870D-B649-4DD0-8F37-8CCDDAA99039}]
+@="MSYS2 UCRT64 Explorer Command"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{15A3870D-B649-4DD0-8F37-8CCDDAA99039}\InprocServer32]
+@="C:\\Users\\reale\\Code\\C++\\MSYS2-UCRT-shell\\build\\Debug\\msys2_ucrt64_shell.dll"
+"ThreadingModel"="Apartment"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\MSYS2_UCRT64]
+"MUIVerb"="Open in MSYS2 UCRT64"
+"ExplorerCommandHandler"="{15A3870D-B649-4DD0-8F37-8CCDDAA99039}"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\MSYS2_UCRT64]
+"MUIVerb"="Open in MSYS2 UCRT64"
+"ExplorerCommandHandler"="{15A3870D-B649-4DD0-8F37-8CCDDAA99039}"

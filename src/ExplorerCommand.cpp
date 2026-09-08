@@ -57,8 +57,11 @@ STDMETHODIMP ExplorerCommand::GetIcon(IShellItemArray*, LPWSTR* icon) {
 
     *icon = nullptr;
 
-    // TODO: No icon yet.
-    return E_NOTIMPL;
+    // TODO: Make the icon path dynamic based on the MSYS2 installation directory. For now, it is hardcoded.
+    return SHStrDupW(
+        L"C:\\msys64\\ucrt64.ico",
+        icon
+    );
 }
 
 STDMETHODIMP ExplorerCommand::GetToolTip(IShellItemArray*, LPWSTR* tooltip) {

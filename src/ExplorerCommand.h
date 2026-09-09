@@ -3,11 +3,14 @@
 #include <windows.h>
 #include <shobjidl.h>
 
-class ExplorerCommand final : public IExplorerCommand {
+class ExplorerCommand final : public IExplorerCommand, public IObjectWithSite {
 private:
     ~ExplorerCommand();
     
-    LONG referenceCount_ = 1;;
+    HRESULT GetBackgroundItems(IShellItemArray** items);
+    
+    LONG referenceCount_ = 1;
+    IUnknown* site_ = nullptr;
 
 public:
     ExplorerCommand();
@@ -25,4 +28,6 @@ public:
     STDMETHODIMP Invoke(IShellItemArray* items, IBindCtx* bindContext) override;
     STDMETHODIMP GetFlags(EXPCMDFLAGS* flags) override;
     STDMETHODIMP EnumSubCommands(IEnumExplorerCommand** enumerator) override;
+    STDMETHODIMP SetSite(IUnknown* site) override;
+    STDMETHODIMP GetSite(REFIID riid, void** object) override;
 };

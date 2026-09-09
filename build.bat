@@ -19,6 +19,10 @@ set "ROOT=%~dp0"
 set "BUILD_DIR=%ROOT%build"
 set "CONFIG=Debug"
 set "DO_CLEAN=0"
+set "EXIT_CODE=1"
+
+:: ---- stop file-explorer ----
+taskkill /f /im explorer.exe >nul 2>&1
 
 :: ---- parse args ----
 for %%A in (%*) do (
@@ -36,7 +40,8 @@ if "%DO_CLEAN%"=="1" (
     )
     if /I "%~1"=="clean" (
         echo Clean complete.
-        exit /b 0
+        set "EXIT_CODE=0"
+        goto :exit
     )
 )
 
@@ -65,7 +70,7 @@ if not defined CMAKE_EXE (
 if not defined CMAKE_EXE (
     echo [ERROR] cmake.exe not found on PATH and no Visual Studio install with CMake could be located.
     echo Open a "Developer Command Prompt for VS" or add CMake to PATH, then retry.
-    exit /b 1
+    goto :exit
 )
 
 echo Using CMake: !CMAKE_EXE!
@@ -91,7 +96,7 @@ echo === Configuring [%CONFIG%, x64] ===
 "!CMAKE_EXE!" -S "%ROOT%." -B "%BUILD_DIR%" -A x64 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 if errorlevel 1 (
     echo [ERROR] CMake configure failed.
-    exit /b 1
+    goto :exit
 )
 
 echo.
@@ -99,7 +104,7 @@ echo === Building [%CONFIG%] ===
 "!CMAKE_EXE!" --build "%BUILD_DIR%" --config %CONFIG% -j
 if errorlevel 1 (
     echo [ERROR] Build failed.
-    exit /b 1
+    goto :exit
 )
 
 echo.
@@ -110,7 +115,16 @@ if exist "%DLL_PATH%" (
 ) else (
     echo [WARN] Expected output not found at: %DLL_PATH%
     echo Check the target name in CMakeLists.txt matches "msys2_ucrt64_shell".
+    goto :exit
 )
 
-endlocal
-exit /b 0
+:: ---- update the exit code to success and exit ----
+set "EXIT_CODE=0"
+goto :exit
+
+:: ---- exit subroutine ----
+:exit
+if not defined EXIT_CODE set "EXIT_CODE=0"
+
+start "" explorer.exe
+endlocal & exit /b %EXIT_CODE%

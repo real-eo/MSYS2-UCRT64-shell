@@ -7,8 +7,6 @@ ClassFactory::ClassFactory() {}
 ClassFactory::~ClassFactory() {}
 
 STDMETHODIMP ClassFactory::QueryInterface(REFIID riid, void** object) {
-    // OutputDebugStringW(L"MSYS2: ClassFactory::QueryInterface\n");                       // | DEBUG
-
     if (object == nullptr)
         return E_POINTER;
 
@@ -20,7 +18,6 @@ STDMETHODIMP ClassFactory::QueryInterface(REFIID riid, void** object) {
         return S_OK;
     }
 
-    // OutputDebugStringW(L"MSYS2: ClassFactory::QueryInterface -> E_NOINTERFACE\n");      // | DEBUG
     return E_NOINTERFACE;
 }
 
@@ -42,7 +39,6 @@ STDMETHODIMP_(ULONG) ClassFactory::Release() {
 }
 
 STDMETHODIMP ClassFactory::CreateInstance(IUnknown* outer, REFIID riid, void** object) {
-    // OutputDebugStringW(L"MSYS2: ClassFactory::CreateInstance\n");                       // | DEBUG
     if (object == nullptr)
         return E_POINTER;
 
@@ -54,12 +50,6 @@ STDMETHODIMP ClassFactory::CreateInstance(IUnknown* outer, REFIID riid, void** o
     auto* command = new ExplorerCommand();
 
     HRESULT result = command->QueryInterface(riid, object);
-
-    // if (SUCCEEDED(result))                                                              // | DEBUG
-        // OutputDebugStringW(L"MSYS2: CreateInstance -> success\n");                      // | DEBUG
-    // else                                                                                // | DEBUG
-        // OutputDebugStringW(L"MSYS2: CreateInstance -> failure\n");                      // | DEBUG
-
 
     command->Release();
 

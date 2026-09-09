@@ -6,7 +6,7 @@
 // ? Since the linker pragmas preform the exports, we don't need to use `__declspec(dllexport)` here. 
 extern "C" // __declspec(dllexport)
 HRESULT STDAPICALLTYPE DllGetClassObjectImpl(REFCLSID rclsid, REFIID riid, void** object) {
-    OutputDebugStringW(L"MSYS2: DllGetClassObject called\n");                           // | DEBUG
+    // OutputDebugStringW(L"MSYS2: DllGetClassObject called\n");                           // | DEBUG
 
     if (object == nullptr)
         return E_POINTER;
@@ -58,9 +58,9 @@ HRESULT STDAPICALLTYPE DllCanUnloadNowImpl() {
 #pragma comment(linker, "/export:DllCanUnloadNow=DllCanUnloadNowImpl,PRIVATE")
 
 
-extern "C" BOOL WINAPI DllMain(HINSTANCE, DWORD reason, LPVOID) {                       // | DEBUG
-    if (reason == DLL_PROCESS_ATTACH)                                                   // | DEBUG
-        OutputDebugStringW(L"MSYS2: DLL loaded\n");                                     // | DEBUG
-                                                                                        // | DEBUG
-    return TRUE;                                                                        // | DEBUG
-}                                                                                       // | DEBUG
+// extern "C" BOOL WINAPI DllMain(HINSTANCE, DWORD reason, LPVOID) {                       // | DEBUG
+    // if (reason == DLL_PROCESS_ATTACH)                                                   // | DEBUG
+        // OutputDebugStringW(L"MSYS2: DLL loaded\n");                                     // | DEBUG
+        //                                                                                 // | DEBUG
+    // return TRUE;                                                                        // | DEBUG
+// }                                                                                       // | DEBUG

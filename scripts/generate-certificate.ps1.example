@@ -1,1 +1,3 @@
+# Generate a new self-signed certificate
+# ! MAKE SURE THAT YOU MATCH THE SUBJECT "CN=NAME" WITH THE PUBLISHER IN `AppxManifest.xml`. THIS CAN BE CHOSEN FREELY BY YOU, BUT MUST BE CONSISTENT.
 New-SelfSignedCertificate -Type Custom -Subject "CN=NAME" -KeyUsage DigitalSignature -FriendlyName "Msys2Ucrt64Shell Signing" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")

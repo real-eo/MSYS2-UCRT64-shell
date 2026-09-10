@@ -1,2 +1,4 @@
+# Export the self-signed certificate to a PFX file
+# ! MAKE SURE THAT YOU MATCH THE THUMBPRINT WITH THE ONE FROM `generate-certificate.ps1`.
 $pwd = ConvertTo-SecureString -String "<CHOOSE-A-PASSWORD>" -Force -AsPlainText
 Export-PfxCertificate -cert "Cert:\CurrentUser\My\<THUMBPRINT>" -FilePath .\packaging\Msys2Ucrt64Shell.pfx -Password $pwd

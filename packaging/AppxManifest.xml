@@ -10,13 +10,13 @@
 
   <Identity
     Name="Msys2Ucrt64Shell"
-    Publisher="CN=NAME"
+    Publisher="CN=real-eo"
     Version="1.0.0.0"
     ProcessorArchitecture="x64" />
 
   <Properties>
     <DisplayName>MSYS2 UCRT64 Shell</DisplayName>
-    <PublisherDisplayName>NAME</PublisherDisplayName>
+    <PublisherDisplayName>real-eo</PublisherDisplayName>
     <Logo>assets\logo.png</Logo>
   </Properties>
 

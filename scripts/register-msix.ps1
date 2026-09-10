@@ -1,6 +1,6 @@
 # Register the sparse package (Option A, active).
 # Re-run this after every rebuild; no makeappx/signing needed.
-Add-AppxPackage -Register .\packaging\AppxManifest.xml -ExternalLocation "C:\Users\reale\Code\C++\MSYS2-UCRT-shell\build\Release"
+Add-AppxPackage -Path .\packaging\Msys2Ucrt64Shell.msix -ExternalLocation "C:\Users\reale\Code\C++\MSYS2-UCRT-shell\build\Release"
 
 # ! OPTION B (full package): uncomment when the DLL is more complete.
 # ! Also: set AllowExternalContent="false" in AppxManifest.xml, copy the DLL

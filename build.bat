@@ -112,6 +112,11 @@ echo === Build succeeded ===
 set "DLL_PATH=%BUILD_DIR%\%CONFIG%\msys2_ucrt64_shell.dll"
 if exist "%DLL_PATH%" (
     echo Output: %DLL_PATH%
+
+    if !CONFIG! == Release (
+        echo Copying to: %ROOT%\packaging\msys2_ucrt64_shell.dll
+        copy /y "%DLL_PATH%" "%ROOT%\packaging\msys2_ucrt64_shell.dll" >nul
+    )
 ) else (
     echo [WARN] Expected output not found at: %DLL_PATH%
     echo Check the target name in CMakeLists.txt matches "msys2_ucrt64_shell".

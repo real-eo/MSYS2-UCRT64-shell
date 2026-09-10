@@ -7,3 +7,4 @@ packaging/*.pfx
 packaging/*.msix
 packaging/msys2_ucrt64_shell.dll
 scripts/*-certificate.ps1
+scripts/sign-msix.ps1

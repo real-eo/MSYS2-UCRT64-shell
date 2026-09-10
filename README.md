@@ -57,7 +57,7 @@ The DLL implements:
 
 ## Setup guide
 
-Everything below is a one-time setup. Read all of it before starting; several steps have gotchas that will cost you time if missed.
+Everything below is a one-time setup. **Read all of it before starting; <u>several steps have gotchas that will cost you time if missed.</u>**
 
 ### Requirements
 

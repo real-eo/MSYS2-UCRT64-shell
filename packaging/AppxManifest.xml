@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  IgnorableNamespaces="uap rescap com desktop4 desktop5">
+
+  <Identity
+    Name="Msys2Ucrt64Shell"
+    Publisher="CN=NAME"
+    Version="1.0.0.0"
+    ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>MSYS2 UCRT64 Shell</DisplayName>
+    <PublisherDisplayName>NAME</PublisherDisplayName>
+    <Logo>assets\logo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App">
+      <uap:VisualElements
+        AppListEntry="none"
+        DisplayName="MSYS2 UCRT64 Shell"
+        Description="Open folders in MSYS2 UCRT64"
+        BackgroundColor="transparent"
+        Square150x150Logo="assets\logo.png"
+        Square44x44Logo="assets\logo.png" />
+    </Application>
+  </Applications>
+
+  <Extensions>
+    <!-- Register the DLL as a packaged in-proc COM server -->
+    <com:Extension Category="windows.comInterface">
+      <com:ComInterface>
+        <com:InProcessServer Path="msys2_ucrt64_shell.dll">
+          <com:Class Id="15A3870D-B649-4DD0-8F37-8CCDDAA99039" />
+        </com:InProcessServer>
+      </com:ComInterface>
+    </com:Extension>
+
+    <!-- Register the verb on the Windows 11 context menu -->
+    <desktop4:Extension Category="windows.fileExplorerContextMenus">
+      <desktop4:FileExplorerContextMenus>
+        <desktop5:ItemType Type="Directory">
+          <desktop5:Verb Id="Msys2Ucrt64" Clsid="15A3870D-B649-4DD0-8F37-8CCDDAA99039" />
+        </desktop5:ItemType>
+      </desktop4:FileExplorerContextMenus>
+    </desktop4:Extension>
+  </Extensions>
+</Package>

@@ -1,3 +1,7 @@
+# ? Remove any existing registration first - same identity + different contents is blocked (0x80073CFB) 
+# ? unless the old package is removed or the version in AppxManifest.xml is incremented.
+Get-AppxPackage Msys2Ucrt64Shell | Remove-AppxPackage
+
 # Register the sparse package (Option A, active).
 # ! The package contains only the manifest + assets; the DLL and stub exe live at the external location (build output).
 # ! Re-run after every rebuild of the DLL. No makeappx/signing needed unless the manifest itself changed (then re-run 

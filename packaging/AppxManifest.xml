@@ -46,7 +46,7 @@
 
   <Applications>
     <Application Id="App"
-      Executable="msys2_ucrt64_shell.dll"
+      Executable="msys2_ucrt64_shell_stub.exe"
       uap10:TrustLevel="mediumIL"
       uap10:RuntimeBehavior="win32App">
       <uap:VisualElements

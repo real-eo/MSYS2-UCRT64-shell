@@ -11,6 +11,8 @@ add_library(msys2_ucrt64_shell SHARED
     src/ExplorerCommand.cpp
 )
 
+add_executable(msys2_ucrt64_shell_stub src/stub.cpp)
+
 target_link_libraries(msys2_ucrt64_shell PRIVATE ole32 shell32 shlwapi)
 target_compile_definitions(msys2_ucrt64_shell PRIVATE UNICODE _UNICODE)
 set_target_properties(msys2_ucrt64_shell PROPERTIES PREFIX "")                          # avoid "lib" prefix, keep plain .dll name

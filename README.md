@@ -69,7 +69,7 @@ Everything below is a one-time setup. **Read all of it before starting; <u>sever
 
 #### Machine-specific paths
 
-Several files in this repository contain **absolute paths from my original machine**. They are examples, not defaults - update them to match your own system before building:
+**Several files in this repository contain absolute paths from my original machine**. They are examples, not defaults - update them to match your own system before building:
 | File | Hardcoded path | What to change it to |
 |---|---|---|
 | `src/ExplorerCommand.cpp` | `C:\msys64\ucrt64.exe` (in `Invoke()`) | Your MSYS2 install root, e.g. `D:\msys2\ucrt64.exe` |
@@ -87,7 +87,7 @@ Get-ChildItem -Recurse -Include *.cpp,*.h,*.ps1,*.reg,*.xml -Path src,scripts,pa
 
 ### 1. Regenerate the CLSID
 
-The CLSID in `src/Guids.h` is unique to this machine. **You must generate yourown** - a CLSID collision with another component causes silent, painful failures.
+The CLSID in `src/Guids.h` is unique to this machine. **You must generate your own** - a CLSID collision with another component causes silent, painful failures.
 ```powershell
 [guid]::NewGuid()
 ```
@@ -135,9 +135,9 @@ Then trust it (elevated PowerShell):
 
 Gotchas:
 - The certificate subject (`CN=...`) must **exactly** match the `Publisher` attribute in `packaging/AppxManifest.xml`.
-- The `.pfx` contains your **private key**. It is gitignored and must never be committed or packed into the `.msix`.
+- **The `.pfx` contains your private key**. It is gitignored and must never be committed or packed into the `.msix`.
 - The password is dev-only; the scripts prompt for it rather than storing it.
-- Anyone cloning this project should generate their **own** certificate, just like the CLSID.
+- **Anyone cloning this project should generate their own certificate**, just like the CLSID.
 
 ### 5. Know the two packaging modes
 
@@ -216,11 +216,11 @@ Then restart Explorer (`scripts\reload-explorer.bat`) and right-click a folder.
 
 ### What each step does and why
 
-**pack-msix.ps1** runs `makeappx` with `/nv` (skip validation). This is required for a sparse package: the manifest references the DLL and stub exe, which live at the external location rather than inside the package, so the "referenced files must exist in the package" check would fail. The output goes to the repo root (not `packaging\`) so it is never packed into itself.
+**`pack-msix.ps1`** runs `makeappx` with `/nv` (skip validation). This is required for a sparse package: the manifest references the DLL and stub exe, which live at the external location rather than inside the package, so the "referenced files must exist in the package" check would fail. The output goes to the repo root (not `packaging\`) so it is never packed into itself.
 
-**sign-msix.ps1** signs with `signtool` using the `.pfx`. An unsigned package is rejected with `0x80073CFF` ("no valid license or sideloading policy").
+**`sign-msix.ps1`** signs with `signtool` using the `.pfx`. An unsigned package is rejected with `0x80073CFF` ("no valid license or sideloading policy").
 
-**register-msix.ps1** removes any existing registration (`Get-AppxPackage ... | Remove-AppxPackage`) and registers the new one with `Add-AppxPackage -Path ... -ExternalLocation`. The removal step is needed because re-installing the same identity with different contents is blocked (`0x80073CFB`); the alternative is incrementing `Version` in the manifest.
+**`register-msix.ps1`** removes any existing registration (`Get-AppxPackage ... | Remove-AppxPackage`) and registers the new one with `Add-AppxPackage -Path ... -ExternalLocation`. The removal step is needed because re-installing the same identity with different contents is blocked (`0x80073CFB`); the alternative is incrementing `Version` in the manifest.
 
 ### Verifying
 
@@ -248,8 +248,8 @@ Key trace points: `DllGetClassObject` (Explorer found the registration), `GetTit
 
 ### Background vs. folder invocation
 
-- Right-clicking a **folder**: Explorer supplies an `IShellItemArray`; the first item is the folder.
-- Right-clicking the **background**: Explorer supplies `nullptr`. The code falls back to `IObjectWithSite`, walking `site -> IServiceProvider -> IShellBrowser -> IShellView -> IFolderView -> IShellFolder -> IPersistFolder2 -> PIDL -> IShellItemArray`.
+- Right-clicking a folder: Explorer supplies an `IShellItemArray`; the first item is the folder.
+- Right-clicking the background: Explorer supplies `nullptr`. The code falls back to `IObjectWithSite`, walking `site -> IServiceProvider -> IShellBrowser -> IShellView -> IFolderView -> IShellFolder -> IPersistFolder2 -> PIDL -> IShellItemArray`.
 
 `IShellView` has no `GetFolder` method, and `SVGIO_BACKGROUND` does not provide `IShellFolder` directly (`E_NOINTERFACE`) - the `IFolderView` `QueryInterface` step is required.
 

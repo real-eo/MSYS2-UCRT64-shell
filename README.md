@@ -2,7 +2,7 @@
 
 A Windows shell extension that adds an **"Open in MSYS2 UCRT64"** entry to the Windows 11 context menu. Right-clicking a folder (or empty space inside a folder) opens an MSYS2 UCRT64 terminal in that directory.
 
-The extension is implemented as a COM in-process DLL exposing `IExplorerCommand`, registered on the modern Windows 11 context menu through a **sparse MSIX package** - the same mechanism used by VS Code, Windows Terminal, and PowerToys.
+The extension is implemented as a COM in-process DLL exposing `IExplorerCommand`, registered on the modern Windows 11 context menu through a sparse MSIX package - the same mechanism used by VS Code, Windows Terminal, and PowerToys.
 
 ## Project overview
 

@@ -82,8 +82,7 @@ The paths in `packaging/AppxManifest.xml` are relative and need no changes.
 
 A quick way to find every machine-specific path:
 ```powershell
-Get-ChildItem -Recurse -Include *.cpp,*.h,*.ps1,*.reg,*.xml -Path src,scripts,packaging |
-    Select-String -Pattern "[A-Z]:\\"
+Get-ChildItem -Recurse -Include *.cpp,*.h,*.ps1,*.reg,*.xml -Path src,scripts,packaging | Select-String -Pattern "[A-Z]:\\"
 ```
 
 ### 1. Regenerate the CLSID

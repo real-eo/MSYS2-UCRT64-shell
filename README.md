@@ -84,6 +84,8 @@ A quick way to find every machine-specific path:
 ```powershell
 Get-ChildItem -Recurse -Include *.cpp,*.h,*.ps1,*.reg,*.xml -Path src,scripts,packaging | Select-String -Pattern "[A-Z]:\\"
 ```
+>[!NOTE]
+>There are 4 false positives which get picked up by the command from the `src/dll.cpp` translation unit as it contains a comment with documentation over an error which I encountered earlier in development
 
 ### 1. Regenerate the CLSID
 

@@ -1,2 +1,4 @@
-# Sign the MSIX package
-& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe" sign /fd SHA256 /a /f .\packaging\Msys2Ucrt64Shell.pfx /p your-password .\packaging\Msys2Ucrt64Shell.msix
+# Sign the package with the existing pfx and password.
+# ! Shared by BOTH options (A: sparse, B: full package) - the signing step is identical; only the package contents differ.
+# ! NOTE: The .pfx lives in `scripts\` (NOT `packaging\`) so it never gets packed into the .msix.
+& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe" sign /fd SHA256 /a /f .\scripts\Msys2Ucrt64Shell.pfx /p <YOUR-PASSWORD> .\Msys2Ucrt64Shell.msix

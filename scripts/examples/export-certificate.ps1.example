@@ -1,4 +1,6 @@
-# Export the self-signed certificate to a PFX file
+# Export the self-signed certificate as a .pfx.
+# ! Shared by BOTH options (A: sparse, B: full package).
+# ! The .pfx contains your PRIVATE KEY - keep it out of `packaging\` and out of git.
 # ! MAKE SURE THAT YOU MATCH THE THUMBPRINT WITH THE ONE FROM `generate-certificate.ps1`.
 $pwd = ConvertTo-SecureString -String "<CHOOSE-A-PASSWORD>" -Force -AsPlainText
-Export-PfxCertificate -cert "Cert:\CurrentUser\My\<THUMBPRINT>" -FilePath .\packaging\Msys2Ucrt64Shell.pfx -Password $pwd
+Export-PfxCertificate -cert "Cert:\CurrentUser\My\<THUMBPRINT>" -FilePath .\scripts\Msys2Ucrt64Shell.pfx -Password $pwd

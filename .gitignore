@@ -1,10 +1,12 @@
 # Ignore build artifacts and development files
 build/
 dev/
+packaging/*.dll
+packaging/*.exe
 
 # Credentials and signing files
-packaging/*.pfx
-packaging/*.msix
-packaging/msys2_ucrt64_shell.dll
+*.msix
+scripts/*.pfx
 scripts/*-certificate.ps1
+!scripts/trust-certificate.ps1
 scripts/sign-msix.ps1

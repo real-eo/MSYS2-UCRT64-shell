@@ -1,3 +1,0 @@
-# Trust the self-signed certificate for the MSYS2 UCRT64 Shell appx package.
-# ! NEEDS ELEVATED PRIVILEGES TO RUN.
-Import-PfxCertificate -FilePath .\packaging\Msys2Ucrt64Shell.pfx -CertStoreLocation Cert:\LocalMachine\Root -Password $pwd

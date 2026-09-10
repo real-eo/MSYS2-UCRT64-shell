@@ -1,0 +1,2 @@
+$pwd = ConvertTo-SecureString -String "<CHOOSE-A-PASSWORD>" -Force -AsPlainText
+Export-PfxCertificate -cert "Cert:\CurrentUser\My\<THUMBPRINT>" -FilePath .\packaging\Msys2Ucrt64Shell.pfx -Password $pwd

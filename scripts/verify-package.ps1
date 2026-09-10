@@ -1,0 +1,1 @@
+Get-AppxPackage Msys2Ucrt64Shell

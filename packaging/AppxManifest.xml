@@ -35,8 +35,8 @@
         DisplayName="MSYS2 UCRT64 Shell"
         Description="Open folders in MSYS2 UCRT64"
         BackgroundColor="transparent"
-        Square150x150Logo="assets\logo.png"
-        Square44x44Logo="assets\logo.png" />
+        Square150x150Logo="assets\ucrt64-3.png"
+        Square44x44Logo="assets\ucrt64-3.png" />
     </Application>
   </Applications>
 

@@ -9,7 +9,6 @@ add_library(msys2_ucrt64_shell SHARED
     src/dll.cpp
     src/ClassFactory.cpp
     src/ExplorerCommand.cpp
-    src/Registration.cpp
 )
 
 target_link_libraries(msys2_ucrt64_shell PRIVATE ole32 shell32 shlwapi)

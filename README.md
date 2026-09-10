@@ -69,7 +69,7 @@ Everything below is a one-time setup. **Read all of it before starting; <u>sever
 
 #### Machine-specific paths
 
-**Several files in this repository contain absolute paths from my original machine**. They are examples, not defaults - update them to match your own system before building:
+***Several files in this repository contain absolute paths from my original machine**. They are examples, not defaults - update them to match your own system before building:*
 | File | Hardcoded path | What to change it to |
 |---|---|---|
 | `src/ExplorerCommand.cpp` | `C:\msys64\ucrt64.exe` (in `Invoke()`) | Your MSYS2 install root, e.g. `D:\msys2\ucrt64.exe` |

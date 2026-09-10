@@ -1,2 +1,7 @@
 build/
 dev/
+
+# Credentials and signing files
+packaging/*.pfx
+packaging/*.msix
+packaging/msys2_ucrt64_shell.dll

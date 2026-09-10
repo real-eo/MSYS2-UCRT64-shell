@@ -67,6 +67,25 @@ Everything below is a one-time setup. Read all of it before starting; several st
 - Windows SDK (provides `makeappx.exe` and `signtool.exe`)
 - MSYS2 installed (the code assumes `C:\msys64`; adjust the paths in `ExplorerCommand.cpp` if yours differs)
 
+#### Machine-specific paths
+
+Several files in this repository contain **absolute paths from my original machine**. They are examples, not defaults - update them to match your own system before building:
+| File | Hardcoded path | What to change it to |
+|---|---|---|
+| `src/ExplorerCommand.cpp` | `C:\msys64\ucrt64.exe` (in `Invoke()`) | Your MSYS2 install root, e.g. `D:\msys2\ucrt64.exe` |
+| `src/ExplorerCommand.cpp` | `C:\msys64\ucrt64.ico` (in `GetIcon()`) | Your MSYS2 install root, or an icon embedded in the DLL |
+| `scripts/register-msix.ps1` | `C:\Users\<user>\...\build\Release` (`-ExternalLocation`) | The absolute path to **your** `build\Release` folder containing the DLL and stub exe |
+| `scripts/register.reg` | `C:\Users\<user>\...\build\Debug\msys2_ucrt64_shell.dll` | The absolute path to your built DLL (legacy fallback only) |
+| `scripts/register.reg` | `C:\msys64\ucrt64.ico` | Your MSYS2 install root |
+
+The paths in `packaging/AppxManifest.xml` are relative and need no changes.
+
+A quick way to find every machine-specific path:
+```powershell
+Get-ChildItem -Recurse -Include *.cpp,*.h,*.ps1,*.reg,*.xml -Path src,scripts,packaging |
+    Select-String -Pattern "[A-Z]:\\"
+```
+
 ### 1. Regenerate the CLSID
 
 The CLSID in `src/Guids.h` is unique to this machine. **You must generate yourown** - a CLSID collision with another component causes silent, painful failures.
